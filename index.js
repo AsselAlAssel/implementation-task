@@ -5,6 +5,16 @@ const sort = (arr, callBackFun) => {
   callBackFun(arr);
 };
 
+const compare = (firstVal, secondVal) => {
+  let res = 0;
+  if (firstVal > secondVal) {
+    res = 1;
+  } else if (firstVal < secondVal) {
+    res = -1;
+  }
+  return res;
+};
+
 const bubbleSort = (arr) => {
   for (let firstIndex = 0; firstIndex < arr.length; firstIndex++) {
     for (
@@ -12,7 +22,7 @@ const bubbleSort = (arr) => {
       secondIndex < arr.length;
       secondIndex++
     ) {
-      if (arr[firstIndex] > arr[secondIndex]) {
+      if (1 == compare(arr[firstIndex] ,arr[secondIndex])) {
         swap(arr, firstIndex, secondIndex);
       }
     }
