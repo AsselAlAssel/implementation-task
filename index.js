@@ -1,7 +1,7 @@
 let numbers = [3, 4, 2, 5, 1, 20, 46, 373, 37, 22, 49],
   fruits = ["Apple", "Strawberry", "Orange", "Banana"];
 
-const sort = (arr, callback, compare) => {
+const sort = (arr, callback) => {
   let sortedArr = [...arr];
   callback(sortedArr, compare);
   return sortedArr;
@@ -42,8 +42,8 @@ console.log("arrays before sort");
 console.log("numbers", numbers);
 console.log("fruits", fruits);
 
-let sortedNumbers = sort(numbers, bubbleSort, compare);
-let sortedFruits = sort(fruits, bubbleSort, compare);
+let sortedNumbers = sort(numbers, bubbleSort);
+let sortedFruits = sort(fruits, bubbleSort);
 
 console.log("arrays after sort");
 console.log("sorted numbers", sortedNumbers);
