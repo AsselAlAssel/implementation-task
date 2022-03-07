@@ -1,8 +1,10 @@
 let numbers = [3, 4, 2, 5, 1, 20, 46, 373, 37, 22, 49],
   fruits = ["Apple", "Strawberry", "Orange", "Banana"];
 
-const sort = (arr, callBackFun) => {
-  callBackFun(arr);
+const sort = (arr, callback, compare) => {
+  let sortedArr = [...arr];
+  callback(sortedArr, compare);
+  return sortedArr;
 };
 
 const compare = (firstVal, secondVal) => {
@@ -15,14 +17,15 @@ const compare = (firstVal, secondVal) => {
   return res;
 };
 
-const bubbleSort = (arr) => {
+
+const bubbleSort = (arr, compare) => {
   for (let firstIndex = 0; firstIndex < arr.length; firstIndex++) {
     for (
       let secondIndex = firstIndex;
       secondIndex < arr.length;
       secondIndex++
     ) {
-      if (1 == compare(arr[firstIndex] ,arr[secondIndex])) {
+      if (1 == compare(arr[firstIndex], arr[secondIndex])) {
         swap(arr, firstIndex, secondIndex);
       }
     }
@@ -39,20 +42,20 @@ console.log("arrays before sort");
 console.log("numbers", numbers);
 console.log("fruits", fruits);
 
-sort(numbers, bubbleSort);
-sort(fruits, bubbleSort);
+let sortedNumbers = sort(numbers, bubbleSort, compare);
+let sortedFruits = sort(fruits, bubbleSort, compare);
 
 console.log("arrays after sort");
-console.log("numbers", numbers);
-console.log("fruits", fruits);
+console.log("sorted numbers", sortedNumbers);
+console.log("sorted fruits", sortedFruits);
 console.log("************************");
 
 // ***************************************************
 
-const map = (arr, callBackFun) => {
+const map = (arr, callback) => {
   let resultArray = [];
   for (let key in arr) {
-    resultArray.push(callBackFun(arr[key]));
+    resultArray.push(callback(arr[key]));
   }
   return resultArray;
 };
@@ -67,10 +70,10 @@ console.log("************************");
 // ***************************************************
 numbers = [3, 4, 2, 5, 1, 20, 46, 373, 37, 22, 49];
 
-const filter = (arr, callBackFun) => {
+const filter = (arr, callback) => {
   let resultArray = [];
   for (let key in arr) {
-    if (!callBackFun(arr[key])) {
+    if (!callback(arr[key])) {
       resultArray.push(arr[key]);
     }
   }
@@ -85,11 +88,11 @@ console.log("numbers after filter", NumbersAfterFilter);
 console.log("************************");
 
 // ******************************************************
-const reduce = (arr, callBackFun, InitialValue) => {
+const reduce = (arr, callback, InitialValue) => {
   let total = InitialValue ?? arr[0];
   let index = InitialValue != null || InitialValue != undefined ? 0 : 1;
   for (; index < arr.length; index++) {
-    total = callBackFun(total, arr[index]);
+    total = callback(total, arr[index]);
   }
   return total;
 };
