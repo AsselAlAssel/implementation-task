@@ -88,11 +88,12 @@ console.log("numbers after filter", NumbersAfterFilter);
 console.log("************************");
 
 // ******************************************************
-const isNil =InitialValue=> InitialValue !== null || InitialValue !== undefined ;
+const isNill = InitialValue => InitialValue === null || InitialValue === undefined;
 const reduce = (arr, callback, InitialValue) => {
   let total = InitialValue ?? arr[0];
-  let index = isNil(InitialValue) ? 1 : 0;
+  let index = isNill(InitialValue) ? 1 : 0;
   for (; index < arr.length; index++) {
+   
     total = callback(total, arr[index]);
   }
   return total;
